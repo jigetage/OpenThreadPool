@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <memory.h>
 #include <time.h>
+#include <thread>
 
 #define TIME_SLEEPED_IN_MILLISECONDS 1000
 #define THREADS_COUNT_IN_POOL 20
@@ -12,9 +13,9 @@
 void func(void* param)
 {
     int taskData = *((int*)param);
-    std::cout << "task " << taskData << " starts." << std::endl;
+    std::cout << "task " << taskData << " starts in working thread " << pthread_self() << std::endl;
     usleep(TIME_SLEEPED_IN_MILLISECONDS * 1000);
-    std::cout << "task " << taskData << " ends." << std::endl;
+    std::cout << "task " << taskData << " ends in working thread " << pthread_self() << std::endl;
 }
 
 int main()

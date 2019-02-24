@@ -48,6 +48,8 @@ void* CThreadPool::threadFunc(void*)
         pthread_mutex_unlock(&m_mutex);
 
         pTask->run();
+        delete pTask;
+        pTask = nullptr;
     }
     return 0;
 }
